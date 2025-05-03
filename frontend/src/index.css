@@ -1,11 +1,11 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: #1a1b26;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,56 +13,208 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
   min-height: 100vh;
+  background-color: #1a1b26;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 1.8rem;
+  padding: 1rem 2rem;
+  margin: 0;
+  color: #bd93f9;
+  background-color: #20212c;
+  border-bottom: 1px solid #44475a;
+}
+
+.prompt-area {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 2rem;
+  background-color: #20212c;
+  border-top: 1px solid #44475a;
+  display: flex;
+  gap: 1rem;
+}
+
+.prompt-input {
+  flex-grow: 1;
+  padding: 12px 16px;
+  border-radius: 24px;
+  border: 1px solid #44475a;
+  background-color: #282a36;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  resize: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.prompt-input:focus {
+  border-color: #bd93f9;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(189, 147, 249, 0.2);
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #bd93f9;
+  color: #282a36;
+  font-weight: 600;
+  padding: 0.7rem 1.2rem;
+  border-radius: 24px;
+  border: none;
   cursor: pointer;
-  transition: border-color 0.25s;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  min-width: 100px;
+  align-self: flex-end;
 }
+
 button:hover {
-  border-color: #646cff;
+  background-color: #a679e9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(189, 147, 249, 0.3);
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(189, 147, 249, 0.3);
+}
+
+.response-box {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  overflow-y: auto;
+}
+
+.response-box h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #f8f8f2;
+  margin-bottom: 1rem;
+}
+
+.res {
+  text-align: left;
+  margin: 0;
+}
+
+.res p {
+  margin: 0.6rem 0;
+  padding: 0.8rem 1.2rem;
+  line-height: 1.6;
+  color: #f8f8f2;
+  background-color: #2d2e3b;
+  border-radius: 12px;
+  max-width: 80%;
+  display: inline-block;
+}
+
+/* Add animation for loading state */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.loading {
+  animation: pulse 1.5s infinite;
+}
+
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 80px; /* Space for the input area */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+    padding: 0.8rem 1rem;
+  }
+  
+  .prompt-area {
+    padding: 0.8rem 1rem;
+  }
+  
+  .response-box {
+    padding: 1rem;
+  }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #333;
+    background-color: #f5f5f7;
   }
-  a:hover {
-    color: #747bff;
+  
+  body {
+    background-color: #f5f5f7;
   }
+  
+  h1 {
+    color: #6c4edf;
+    background-color: white;
+    border-bottom: 1px solid #e6e6e6;
+  }
+  
+  .prompt-area {
+    background-color: white;
+    border-top: 1px solid #e6e6e6;
+  }
+  
+  .prompt-input {
+    flex-grow: 1;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid #44475a;
+    background-color: #282a36;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    resize: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  
+  .prompt-input:focus {
+    border-color: #6c4edf;
+    box-shadow: 0 0 0 2px rgba(108, 78, 223, 0.2);
+  }
+  
   button {
-    background-color: #f9f9f9;
+    background-color: #6c4edf;
+    color: white;
+  }
+  
+  button:hover {
+    background-color: #5c41c0;
+    box-shadow: 0 4px 8px rgba(108, 78, 223, 0.3);
+  }
+  
+  .res p {
+    background-color: #e9e3fc;
+    color: #333;
+  }
+  
+  .response-box h3 {
+    color: #333;
   }
 }
